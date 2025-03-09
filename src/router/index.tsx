@@ -1,12 +1,12 @@
-import { createBrowserRouter } from "react-router-dom"
-import Layout from "../components/Layout"
-import HomePage from "../pages/HomePage"
-import EditorPage from "../pages/EditorPage"
-import NotFoundPage from "../pages/NotFoundPage"
+import { createBrowserRouter } from 'react-router-dom'
+import Layout from '../components/Layout'
+import HomePage from '../pages/HomePage'
+import EditorPage from '../pages/EditorPage'
+import NotFoundPage from '../pages/NotFoundPage'
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
@@ -14,11 +14,11 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "editor",
+        path: 'editor',
         element: <EditorPage />,
       },
       {
-        path: "*",
+        path: '*',
         element: <NotFoundPage />,
       },
     ],

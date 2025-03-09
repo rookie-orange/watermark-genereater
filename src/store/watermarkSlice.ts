@@ -1,14 +1,14 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface WatermarkState {
   originalImage: string | null
   watermarkText: string
   watermarkPosition:
-    | "topLeft"
-    | "topRight"
-    | "bottomLeft"
-    | "bottomRight"
-    | "center"
+    | 'topLeft'
+    | 'topRight'
+    | 'bottomLeft'
+    | 'bottomRight'
+    | 'center'
   watermarkOpacity: number
   watermarkColor: string
   watermarkFontSize: number
@@ -18,17 +18,17 @@ export interface WatermarkState {
 
 const initialState: WatermarkState = {
   originalImage: null,
-  watermarkText: "水印文本",
-  watermarkPosition: "bottomRight",
+  watermarkText: '水印文本',
+  watermarkPosition: 'bottomRight',
   watermarkOpacity: 0.5,
-  watermarkColor: "#000000",
+  watermarkColor: '#000000',
   watermarkFontSize: 24,
   watermarkRotation: 0,
   processedImage: null,
 }
 
 export const watermarkSlice = createSlice({
-  name: "watermark",
+  name: 'watermark',
   initialState,
   reducers: {
     setOriginalImage: (state, action: PayloadAction<string>) => {
@@ -40,7 +40,7 @@ export const watermarkSlice = createSlice({
     },
     setWatermarkPosition: (
       state,
-      action: PayloadAction<WatermarkState["watermarkPosition"]>
+      action: PayloadAction<WatermarkState['watermarkPosition']>,
     ) => {
       state.watermarkPosition = action.payload
     },
@@ -59,7 +59,7 @@ export const watermarkSlice = createSlice({
     setProcessedImage: (state, action: PayloadAction<string>) => {
       state.processedImage = action.payload
     },
-    resetWatermarkSettings: (state) => {
+    resetWatermarkSettings: state => {
       return {
         ...initialState,
         originalImage: state.originalImage,

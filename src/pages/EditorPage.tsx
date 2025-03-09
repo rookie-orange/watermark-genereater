@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAppSelector } from "../hooks/useAppSelector"
-import { useAppDispatch } from "../hooks/useAppDispatch"
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useAppSelector } from '../hooks/useAppSelector'
+import { useAppDispatch } from '../hooks/useAppDispatch'
 import {
   setWatermarkText,
   setWatermarkPosition,
@@ -12,12 +12,12 @@ import {
   setProcessedImage,
   resetWatermarkSettings,
   type WatermarkState,
-} from "../store/watermarkSlice"
+} from '../store/watermarkSlice'
 import {
   getWatermarkPositionStyle,
   generateWatermarkedImage,
   downloadImage,
-} from "../utils/watermarkUtils"
+} from '../utils/watermarkUtils'
 
 const EditorPage = () => {
   const navigate = useNavigate()
@@ -31,7 +31,7 @@ const EditorPage = () => {
     watermarkFontSize,
     watermarkRotation,
     processedImage,
-  } = useAppSelector((state) => state.watermark)
+  } = useAppSelector(state => state.watermark)
 
   const [isGenerating, setIsGenerating] = useState(false)
   const imageContainerRef = useRef<HTMLDivElement>(null)
@@ -39,7 +39,7 @@ const EditorPage = () => {
   useEffect(() => {
     // 如果没有原始图片，重定向到首页
     if (!originalImage) {
-      navigate("/")
+      navigate('/')
     }
   }, [originalImage, navigate])
 
@@ -51,7 +51,7 @@ const EditorPage = () => {
       const dataUrl = await generateWatermarkedImage(imageContainerRef.current)
       dispatch(setProcessedImage(dataUrl))
     } catch (error) {
-      console.error("生成水印图片失败:", error)
+      console.error('生成水印图片失败:', error)
     } finally {
       setIsGenerating(false)
     }
@@ -88,15 +88,15 @@ const EditorPage = () => {
               />
               <div
                 className={`absolute ${getWatermarkPositionStyle(
-                  watermarkPosition
+                  watermarkPosition,
                 )} p-2 pointer-events-none`}
                 style={{
                   opacity: watermarkOpacity,
                   color: watermarkColor,
                   fontSize: `${watermarkFontSize}px`,
                   transform: `rotate(${watermarkRotation}deg)`,
-                  transformOrigin: "center",
-                  textShadow: "0 1px 2px rgba(0,0,0,0.3)",
+                  transformOrigin: 'center',
+                  textShadow: '0 1px 2px rgba(0,0,0,0.3)',
                 }}
               >
                 {watermarkText}
@@ -110,7 +110,7 @@ const EditorPage = () => {
               onClick={handleGenerateWatermark}
               disabled={isGenerating}
             >
-              {isGenerating ? "生成中..." : "生成水印"}
+              {isGenerating ? '生成中...' : '生成水印'}
             </button>
             <button className="btn btn-secondary flex-1" onClick={handleReset}>
               重置设置
@@ -150,7 +150,7 @@ const EditorPage = () => {
                 type="text"
                 className="input"
                 value={watermarkText}
-                onChange={(e) => dispatch(setWatermarkText(e.target.value))}
+                onChange={e => dispatch(setWatermarkText(e.target.value))}
                 placeholder="输入水印文本"
               />
             </div>
@@ -162,11 +162,11 @@ const EditorPage = () => {
               <select
                 className="input"
                 value={watermarkPosition}
-                onChange={(e) =>
+                onChange={e =>
                   dispatch(
                     setWatermarkPosition(
-                      e.target.value as WatermarkState["watermarkPosition"]
-                    )
+                      e.target.value as WatermarkState['watermarkPosition'],
+                    ),
                   )
                 }
               >
@@ -189,7 +189,7 @@ const EditorPage = () => {
                 step="0.05"
                 className="w-full"
                 value={watermarkOpacity}
-                onChange={(e) =>
+                onChange={e =>
                   dispatch(setWatermarkOpacity(parseFloat(e.target.value)))
                 }
               />
@@ -204,13 +204,13 @@ const EditorPage = () => {
                   type="color"
                   className="w-10 h-10 rounded cursor-pointer"
                   value={watermarkColor}
-                  onChange={(e) => dispatch(setWatermarkColor(e.target.value))}
+                  onChange={e => dispatch(setWatermarkColor(e.target.value))}
                 />
                 <input
                   type="text"
                   className="input"
                   value={watermarkColor}
-                  onChange={(e) => dispatch(setWatermarkColor(e.target.value))}
+                  onChange={e => dispatch(setWatermarkColor(e.target.value))}
                 />
               </div>
             </div>
@@ -226,7 +226,7 @@ const EditorPage = () => {
                 step="1"
                 className="w-full"
                 value={watermarkFontSize}
-                onChange={(e) =>
+                onChange={e =>
                   dispatch(setWatermarkFontSize(parseInt(e.target.value)))
                 }
               />
@@ -243,7 +243,7 @@ const EditorPage = () => {
                 step="5"
                 className="w-full"
                 value={watermarkRotation}
-                onChange={(e) =>
+                onChange={e =>
                   dispatch(setWatermarkRotation(parseInt(e.target.value)))
                 }
               />

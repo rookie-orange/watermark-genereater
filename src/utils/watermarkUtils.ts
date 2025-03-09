@@ -1,26 +1,26 @@
-import { toJpeg } from "html-to-image"
-import { saveAs } from "file-saver"
-import type { WatermarkState } from "../store/watermarkSlice"
+import { toJpeg } from 'html-to-image'
+import { saveAs } from 'file-saver'
+import type { WatermarkState } from '../store/watermarkSlice'
 
 /**
  * 根据水印位置返回对应的CSS类名
  */
 export const getWatermarkPositionStyle = (
-  position: WatermarkState["watermarkPosition"]
+  position: WatermarkState['watermarkPosition'],
 ): string => {
   switch (position) {
-    case "topLeft":
-      return "top-4 left-4"
-    case "topRight":
-      return "top-4 right-4"
-    case "bottomLeft":
-      return "bottom-4 left-4"
-    case "bottomRight":
-      return "bottom-4 right-4"
-    case "center":
-      return "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+    case 'topLeft':
+      return 'top-4 left-4'
+    case 'topRight':
+      return 'top-4 right-4'
+    case 'bottomLeft':
+      return 'bottom-4 left-4'
+    case 'bottomRight':
+      return 'bottom-4 right-4'
+    case 'center':
+      return 'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
     default:
-      return "bottom-4 right-4"
+      return 'bottom-4 right-4'
   }
 }
 
@@ -29,12 +29,12 @@ export const getWatermarkPositionStyle = (
  */
 export const generateWatermarkedImage = async (
   element: HTMLElement,
-  options = { quality: 0.95 }
+  options = { quality: 0.95 },
 ): Promise<string> => {
   try {
     return await toJpeg(element, options)
   } catch (error) {
-    console.error("生成水印图片失败:", error)
+    console.error('生成水印图片失败:', error)
     throw error
   }
 }

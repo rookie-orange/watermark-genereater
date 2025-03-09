@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import { useAppDispatch } from "../hooks/useAppDispatch"
-import { setOriginalImage } from "../store/watermarkSlice"
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../hooks/useAppDispatch'
+import { setOriginalImage } from '../store/watermarkSlice'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -11,10 +11,10 @@ const HomePage = () => {
     if (!file) return
 
     const reader = new FileReader()
-    reader.onload = (event) => {
-      if (typeof event.target?.result === "string") {
+    reader.onload = event => {
+      if (typeof event.target?.result === 'string') {
         dispatch(setOriginalImage(event.target.result))
-        navigate("/editor")
+        navigate('/editor')
       }
     }
     reader.readAsDataURL(file)
@@ -26,10 +26,10 @@ const HomePage = () => {
     if (!file) return
 
     const reader = new FileReader()
-    reader.onload = (event) => {
-      if (typeof event.target?.result === "string") {
+    reader.onload = event => {
+      if (typeof event.target?.result === 'string') {
         dispatch(setOriginalImage(event.target.result))
-        navigate("/editor")
+        navigate('/editor')
       }
     }
     reader.readAsDataURL(file)
@@ -51,7 +51,7 @@ const HomePage = () => {
 
         <div
           className="card flex flex-col items-center justify-center p-12 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors"
-          onClick={() => document.getElementById("file-upload")?.click()}
+          onClick={() => document.getElementById('file-upload')?.click()}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
         >
