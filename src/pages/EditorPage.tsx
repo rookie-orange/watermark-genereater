@@ -2,7 +2,13 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppSelector } from '../hooks/useAppSelector'
 import { useAppDispatch } from '../hooks/useAppDispatch'
+import { type WatermarkState, watermarkActions } from '@/store/modules'
 import {
+  getWatermarkPositionStyle,
+  generateWatermarkedImage,
+  downloadImage,
+} from '../utils/watermarkUtils'
+const {
   setWatermarkText,
   setWatermarkPosition,
   setWatermarkOpacity,
@@ -11,14 +17,7 @@ import {
   setWatermarkRotation,
   setProcessedImage,
   resetWatermarkSettings,
-  type WatermarkState,
-} from '../store/watermarkSlice'
-import {
-  getWatermarkPositionStyle,
-  generateWatermarkedImage,
-  downloadImage,
-} from '../utils/watermarkUtils'
-
+} = watermarkActions
 const EditorPage = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()

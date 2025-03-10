@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../hooks/useAppDispatch'
-import { setOriginalImage } from '../store/watermarkSlice'
+import { watermarkActions } from '@/store/modules'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ const HomePage = () => {
     const reader = new FileReader()
     reader.onload = event => {
       if (typeof event.target?.result === 'string') {
-        dispatch(setOriginalImage(event.target.result))
+        dispatch(watermarkActions.setOriginalImage(event.target.result))
         navigate('/editor')
       }
     }
@@ -28,7 +28,7 @@ const HomePage = () => {
     const reader = new FileReader()
     reader.onload = event => {
       if (typeof event.target?.result === 'string') {
-        dispatch(setOriginalImage(event.target.result))
+        dispatch(watermarkActions.setOriginalImage(event.target.result))
         navigate('/editor')
       }
     }
