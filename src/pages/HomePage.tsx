@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../hooks/useAppDispatch'
-import { watermarkActions } from '@/store/modules'
+import { setOriginalImage } from '../store/watermarkSlice'
 
 const HomePage = () => {
   const navigate = useNavigate()
@@ -13,7 +13,7 @@ const HomePage = () => {
     const reader = new FileReader()
     reader.onload = event => {
       if (typeof event.target?.result === 'string') {
-        dispatch(watermarkActions.setOriginalImage(event.target.result))
+        dispatch(setOriginalImage(event.target.result))
         navigate('/editor')
       }
     }
@@ -28,7 +28,7 @@ const HomePage = () => {
     const reader = new FileReader()
     reader.onload = event => {
       if (typeof event.target?.result === 'string') {
-        dispatch(watermarkActions.setOriginalImage(event.target.result))
+        dispatch(setOriginalImage(event.target.result))
         navigate('/editor')
       }
     }
@@ -43,9 +43,9 @@ const HomePage = () => {
     <div className="container mx-auto px-4 py-12">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">照片水印生成器</h1>
+          <h1 className="text-4xl font-bold mb-4">照片水印与相框生成器</h1>
           <p className="text-xl text-gray-600">
-            上传照片，添加自定义水印，一键下载
+            上传照片，添加自定义水印和相框，一键下载
           </p>
         </div>
 
@@ -119,12 +119,14 @@ const HomePage = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                    d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z"
                   />
                 </svg>
               </div>
-              <h4 className="text-lg font-medium mb-2">一键下载</h4>
-              <p className="text-gray-600">生成水印后，一键下载处理后的图片</p>
+              <h4 className="text-lg font-medium mb-2">精美相框</h4>
+              <p className="text-gray-600">
+                添加自定义相框，设置颜色、宽度、样式和文字说明
+              </p>
             </div>
             <div className="card">
               <div className="text-blue-600 mb-3">
@@ -139,13 +141,13 @@ const HomePage = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
                   />
                 </svg>
               </div>
-              <h4 className="text-lg font-medium mb-2">安全可靠</h4>
+              <h4 className="text-lg font-medium mb-2">一键下载</h4>
               <p className="text-gray-600">
-                所有处理在本地完成，不会上传您的照片到服务器
+                生成水印和相框后，一键下载处理后的图片
               </p>
             </div>
           </div>

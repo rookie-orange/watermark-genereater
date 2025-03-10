@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { watermarkReducer } from './modules'
+import watermarkReducer from './watermarkSlice'
+
 export const store = configureStore({
   reducer: {
     watermark: watermarkReducer,
